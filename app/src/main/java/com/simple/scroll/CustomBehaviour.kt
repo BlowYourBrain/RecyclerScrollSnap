@@ -34,9 +34,8 @@ class CustomBehaviour @JvmOverloads constructor(
     private val scrollDistance = context.resources.getDimensionPixelSize(R.dimen.cell_height)
     /**value between 0 and [scrollDistance]*/
     private var consumedScroll = 0
-
+    private var appbarLayout: View? = null
     private var childViewPadding = Rect()
-    private var dependencyView: View? = null
 
     override fun layoutDependsOn(
         parent: CoordinatorLayout,
@@ -45,7 +44,7 @@ class CustomBehaviour @JvmOverloads constructor(
     ): Boolean {
         return super.layoutDependsOn(parent, child, dependency).also { depends ->
             if (depends) {
-                dependencyView = child
+                appbarLayout = child
                 childViewPadding.left = child.paddingLeft
                 childViewPadding.right = child.paddingRight
                 childViewPadding.bottom = child.paddingBottom
@@ -137,13 +136,13 @@ class CustomBehaviour @JvmOverloads constructor(
         consumed[0] = consumedDx
         consumed[1] = consumedDy
 
-        dependencyView?.updatePadding(consumedScroll)
+        appbarLayout?.updatePadding(consumedScroll)
 
         super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type)
     }
 
     private fun updateShortcutsState(hasSpace: Boolean) {
-        dependencyView?.run {
+        appbarLayout?.run {
             val pair = if (hasSpace) {
                 consumedScroll = scrollDistance
                 arrayOf(0, scrollDistance)
