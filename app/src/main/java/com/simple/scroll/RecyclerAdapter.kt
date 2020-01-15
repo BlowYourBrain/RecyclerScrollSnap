@@ -1,6 +1,7 @@
 package com.simple.scroll
 
 import android.content.Context
+import android.graphics.Color
 import android.view.ViewGroup
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
@@ -15,11 +16,12 @@ class RecyclerAdapter(val viewCount: Int) : RecyclerView.Adapter<RecyclerAdapter
     override fun getItemCount(): Int = viewCount
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.bind("$position. Вот это вьюха!")
+        holder.bind("$position. WOW, what a kitten!")
     }
 
     private fun createView(context: Context) = AppCompatTextView(context).apply {
         val height = resources.getDimensionPixelSize(R.dimen.cell_height)
+        setBackgroundColor(Color.GREEN)
         layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, height)
     }
 
