@@ -40,13 +40,28 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <com.simple.scroll.CustomRecyclerView
-        android:id="@+id/recyclerView"
+    <LinearLayout
+        android:id="@+id/rvContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
+        android:orientation="vertical"
+        android:background="#228"
         app:layout_behavior=".CustomBehaviour">
 
-    </com.simple.scroll.CustomRecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="32dp"
+        app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
